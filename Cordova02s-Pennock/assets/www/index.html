@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+		<link rel="stylesheet" type="text/css" href="css/index.css" />
+		<title>Cordova02-Pennock</title>
+	</head>
+	<body>
+		<div class="app">
+			<div id="convertArea">
+				<label for="inputFahrenheit" class="convertLabel">Temp(F)</label>
+				<input type="number" id="inputFahrenheit" class="convertInput" value="32"/>
+				<p id="pCeliusResult" class="convertResult"> </p>
+				<br />
+				
+				<label for="inputMiles" class="convertLabel">Miles</label>
+				<input type="number" id="inputMiles" class="convertInput" value="1"/>
+				<p id="pKmResult" class="convertResult"> </p>
+				<br />
+				
+				<label for="inputValueForRoot" class="convertLabel">Number</label>
+				<input type="number" id="inputValueForRoot" class="convertInput" value="4"/>
+				<p id="pSQRTResult" class="convertResult"> </p>
+				
+				<input type="button" id="btnConvert" value="Convert"/>
+			</div>
+		</div>
+		<script src="cordova-2.3.0.js"></script>
+		<script src="js/jquery.js"></script>
+		<script src="js/utility.js"></script>
+		<script src="js/convert.js"></script>
+		<script src="js/index.js"></script>
+	</body>
+</html>
