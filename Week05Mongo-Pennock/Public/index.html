@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title>Week05Mongo-Pennock</title>
+  <link href="index.css" rel="stylesheet" type="text/css">
+  <script src="jquery-2.1.0.js"></script>
+  <script src="index.js"></script>
+</head>
+<body>
+<h1>Week05Mongo-Pennock</h1>
+<p>A simple Node Express program with MongoDb support.</p>
+
+	<div class='aqua-card extra-padding'>
+			<fieldset>
+				<div class="controlrow">
+					<h2 id="topTitle">MongoDB 'test_data' record</h2>
+					<input id="inputNumRec" type="number" placeholder="pick between 1-250" title="pick between 1-250" min="1" max="250" step="1" value="1" />
+					<button id="btnFindRecord">Find DB record (only between 1-250)</button>
+				</div>
+				<div class="controlrow">
+					<label>First Name: </label>
+					<p id="pFName"> </p>
+				</div>
+				<div class="controlrow">
+					<label>Last Name: </label>
+					<p id="pLName"> </p>
+				</div>
+				<div class="controlrow">
+					<label>Address: </label>
+					<p id="pAddress"> </p>
+				</div>
+				<div class="controlrow">
+					<label>City, State, Zip: </label>
+					<p id="pCityStateZip"> </p>
+				</div>
+			</fieldset>
+	</div>
+
+
+
+<p>This program assumes you have run 'node populateTestData.js' to insert 
+some data into the "built-in" MongoDb 'test_data' database.</p>
+
+<ul id="mongoData"> </ul>
+</body>
+</html>
