@@ -1,0 +1,9 @@
+{
+  "name": "Week06NodeRoutes-Pennock",
+  "description": "Feet in Miles, Calculate Feet in X Miles, Calculate circumferance given a radius",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "express": "latest"
+  }
+}
