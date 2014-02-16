@@ -1,27 +1,27 @@
-var FeetConversion = (function() {
-	
-	// Private Data
-	var constantFeetInAMile = 5280;
+var FeetConversion = ( function() {
 
-	// Constructor
-	function FeetConversion() {
-		console.log("FeetConversion.Constructor called");
-	}
-	
-	FeetConversion.prototype.feetInAMile = function(miles) {
-		console.log("FeetConversion.feetInAMile: " + constantFeetInAMile);
-		return (constantFeetInAMile);
-	};	
-	
+		// Private Data
+		var constantFeetInAMile = 5280;
 
-	FeetConversion.prototype.convertMilestoFeet = function(miles) {
-		var result = miles * constantFeetInAMile;
-		console.log("FeetConversion.convertMilestoFeet: " + miles + " miles = " + result);
-		return (result);
-	};	
+		// Constructor
+		function FeetConversion() {
+			console.log("FeetConversion.Constructor called");
+		}
 
-	return FeetConversion;
 
-}());
+		FeetConversion.prototype.feetInAMile = function(miles) {
+			console.log("FeetConversion.feetInAMile: " + constantFeetInAMile);
+			return (constantFeetInAMile);
+		};
 
-exports.feetObj = new FeetConversion();
+		FeetConversion.prototype.convertMilestoFeet = function(miles) {
+			var result = miles * constantFeetInAMile;
+			console.log("FeetConversion.convertMilestoFeet: " + miles + " miles = " + result);
+			return (result);
+		};
+
+		return FeetConversion;
+
+	}());
+
+exports.feetObj = new FeetConversion(); 
