@@ -12,10 +12,8 @@ var port = process.env.PORT || 30025;
 
 app.get('/CreateMongoFromMDFile', function(request, response) {
 	console.log('/CreateMongoFromMDFile called to write fileName: ' + request.query.fileName);
-	mdMongo.mdObj.createMongoEntryFromMDFile(request.query.fileName);
-	response.send({
-		"result" : "Success"
-	});
+	var responseJson = mdMongo.mdObj.createMongoEntryFromMDFile(request.query.fileName);
+	response.send(responseJson);
 });
 
 /* To handle a post, we have to add express.bodyParser, shown above
@@ -25,9 +23,7 @@ app.post('/readMongoForMDFile', function(request, response) {
 	console.log('/getMDEntryFromMongo called for fileName: ' + fileName);
 	console.log(request.body);
 
-	response.send({
-		"result" : "Success"
-	});
+	var responseJson = mdMongo.mdObj.readMongoMarkdown(fileName, response);
 });
 
 app.get('/', function(request, response) {

@@ -15,22 +15,29 @@
 	<p>Reads and Writes an MD file into Mongo</p>
 
 	<div class='aqua-card extra-padding'>
-		<button id="btnWriteMDToMongo">Read Markdown File into Mongo DB</button>
+		<button id="btnWriteMDToMongo">Read Sample.md and Write into Mongo DB</button>
 		<fieldset>
 			<legend>Result</legend>
 			<div id='readMDIntoMongo'> </div>
 		</fieldset>
 	</div>
 	<div class='aqua-card extra-padding'>
-		<button id="getMDHTML">Get Markdown File</button>
+		<button id="getMDHTML">Get Sample.md from Mongo and Convert to HTML</button>
 		<fieldset>
 			<legend>HTML</legend>
-			<div id='mdRaw'> </div>
 			<div id='mdHTML'> </div>
 		</fieldset>
 	</div>
+	<div class='aqua-card extra-padding'>
+		<button id="btnGetSections">Select sections from Sample.md HTML above</button>
+		<div id="sectionButtons"></div>
+		<fieldset>
+			<legend id="mdSectionLegend">Section</legend>
+			<div id='mdHTMLsection'> </div>
+		</fieldset>
+	</div>
 
-	<h3>Assignment README.md</h3>
+	<h3>Assignment README.md (interpreted using showdown.js on the client)</h3>
 	<div id="divREADMEMD"> </div>
 	<div id="divRawREADMEMD"> </div>
 

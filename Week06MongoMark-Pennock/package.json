@@ -6,7 +6,8 @@
         "start": "node server.js"
     },
     "dependencies": {
-        "mongodb": "latest"
+        "mongodb": "latest",
+        "showdown": "latest"
     },
     "devDependencies": {
 		"express": "latest"
