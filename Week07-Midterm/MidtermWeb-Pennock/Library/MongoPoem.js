@@ -1,17 +1,19 @@
 var MongoPoem = ( function() {'use strict';
 
 		// Private Data
-		var MongoClient = require('mongodb').MongoClient;
+		var mongoDb = require('mongodb');
+		var MongoClient = mongoDb.MongoClient;
 		var format = require('util').format;
 		var collectionName = "Poems";
 
 		var url01 = 'mongodb://127.0.0.1:27017/test';
 		var url02 = 'mongodb://http://192.168.1.104/:27017/test';
 		var url05 = 'mongodb://Charlie:Charles@ds033419.mongolab.com:33419/pennockprojects';
+		var urlCurrent = url05;
 		
 		// Constructor
 		function MongoPoem() {
-			console.log("MongoPoem.Constructor called");
+			console.log("MongoPoem.Constructor:  Using url: " + urlCurrent);
 		}
 
 
@@ -23,7 +25,7 @@ var MongoPoem = ( function() {'use strict';
 			var jsonContents = JSON.parse(fileContents);
 			console.log("MongoPoem.InsertPoemJsonIntoMongo file: " + fileName + " contains: " + jsonContents.length + " records");
 
-			MongoClient.connect(url05, function(err, db) {
+			MongoClient.connect(urlCurrent, function(err, db) {
 				if (err) {
 					throw err;
 				}
@@ -42,7 +44,7 @@ var MongoPoem = ( function() {'use strict';
 		
 		MongoPoem.prototype.deletePoemCollection = function(response) {
 			console.log("MongoPoem.deletePoemCollection");
-			MongoClient.connect(url05, function(err, db) {
+			MongoClient.connect(urlCurrent, function(err, db) {
 				if (err) {
 					throw err;
 				}
@@ -58,10 +60,33 @@ var MongoPoem = ( function() {'use strict';
 			});
 		};
 		
+		MongoPoem.prototype.deletePoemById = function(request, response) {
+			var id = request.query.id;
+			console.log("MongoPoem.deletePoemById called for id: " + id);
+			MongoClient.connect(urlCurrent, function(err, db) {
+				if (err) {
+					throw err;
+				}
+
+				var collection = db.collection(collectionName);
+				collection.remove({ "_id" : mongoDb.ObjectID(id)}, function(err, data) {
+					if (err) {
+						throw err;
+					}
+					db.close();
+					console.log("MongoPoem.deletePoemById callback Item " + id + " deleted");
+					response.send({ "result": "id: " + id + " in collection: " + collectionName + " deleted"});								
+				}); 
+				
+			});
+		};
+
+
+		
 		MongoPoem.prototype.readPoemCollection = function(response) {
 			console.log("MongoPoem.readPoemCollection");
 
-			MongoClient.connect(url05, function(err, database) {
+			MongoClient.connect(urlCurrent, function(err, database) {
 				if (err) {
 					throw err;
 				}
@@ -82,7 +107,7 @@ var MongoPoem = ( function() {'use strict';
 			// Send the collection to the client.
 			collection.find().toArray(function(err, theArray) {
 		
-				console.log(theArray);
+//				console.log(theArray);
 				database.close();
 				response.send(theArray);			
 			});

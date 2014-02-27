@@ -20,6 +20,13 @@ app.get('/DeletePoemsInMongo', function(request, response) {'use strict';
 	mdMongo.mdObj.deletePoemCollection(response);
 });
 
+app.get('/DeletePoemById', function(request, response) {'use strict';
+	console.log('/DeletePoemById called');
+	mdMongo.mdObj.deletePoemById(request, response);
+});
+
+
+
 /* To handle a post, we have to add express.bodyParser, shown above
  Now our parameters come in on request.body */
 app.post('/readPoemsMongo', function(request, response) {'use strict';

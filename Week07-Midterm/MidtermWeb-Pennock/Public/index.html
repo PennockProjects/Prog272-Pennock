@@ -9,6 +9,8 @@
 	<script src="jquery-2.1.0.js"></script>
 	<script src="showdown.js"></script>
 	<script src="index.js"></script>
+	<script src="poemsMongoClient.js"></script>
+	<script src="poemsView.js"></script>
 </head>
 <body>
 	<h1>MidtermWeb-Pennock</h1>
@@ -27,22 +29,17 @@
 			<div id='divKeywords'> </div>
 		</fieldset>
 	</div>
-	<div class='aqua-card extra-padding'>
-		<button id="btnGetSections">Select sections from Sample.md HTML above</button>
-		<div id="sectionButtons"> </div>
-		<fieldset>
-			<legend id="mdSectionLegend">Section</legend>
-			<div id='mdHTMLsection'> </div>
-		</fieldset>
-	</div>
 
 	<div class='aqua-card extra-padding'>
-		<button id="btnInsertBardToMongo">Write Shakespeare.json into Mongo "Poems' Collection</button>
-		<button id="btnReadPoemsInMongo">Read Poems From Mongo</button>
-		<button id="btnDeletePoemsInMongo">Delete Mongo "Poems" Collection</button>
 		<fieldset>
-			<legend>Result</legend>
-			<div id='divResultBardInsert'> </div>
+			<legend>Admin Tasks</legend>
+			<button id="btnInsertBardToDb">Insert Shakespeare.json in Mongo</button>
+			<button id="btnReadPoemsInDb">Read Poems From Mongo</button>
+			<button id="btnDeletePoemsInDb">Delete Mongo "Poems" Collection</button>
+			<fieldset>
+				<legend>Result</legend>
+				<div id='divAdminResult'> </div>
+			</fieldset>
 		</fieldset>
 	</div>
 
