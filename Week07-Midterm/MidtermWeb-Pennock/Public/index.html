@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="generator" content="pandoc">
+	<title>MidtermWeb-Pennock</title>
+	<link href="index.css" rel="stylesheet" type="text/css">
+	<link rel="shortcut icon" href="favicon.png">
+	<script src="jquery-2.1.0.js"></script>
+	<script src="showdown.js"></script>
+	<script src="index.js"></script>
+</head>
+<body>
+	<h1>MidtermWeb-Pennock</h1>
+
+	<div class='aqua-card extra-padding'>
+		<fieldset>
+			<legend>Poem</legend>
+			<div id='divTitleContent'> </div>
+		</fieldset>
+		<fieldset>
+			<legend>All Titles</legend>
+			<div id='divTitles'> </div>
+		</fieldset>
+		<fieldset>
+			<legend>Keywords</legend>
+			<div id='divKeywords'> </div>
+		</fieldset>
+	</div>
+	<div class='aqua-card extra-padding'>
+		<button id="btnGetSections">Select sections from Sample.md HTML above</button>
+		<div id="sectionButtons"> </div>
+		<fieldset>
+			<legend id="mdSectionLegend">Section</legend>
+			<div id='mdHTMLsection'> </div>
+		</fieldset>
+	</div>
+
+	<div class='aqua-card extra-padding'>
+		<button id="btnInsertBardToMongo">Write Shakespeare.json into Mongo "Poems' Collection</button>
+		<button id="btnReadPoemsInMongo">Read Poems From Mongo</button>
+		<button id="btnDeletePoemsInMongo">Delete Mongo "Poems" Collection</button>
+		<fieldset>
+			<legend>Result</legend>
+			<div id='divResultBardInsert'> </div>
+		</fieldset>
+	</div>
+
+	<h3>Assignment README.md (interpreted using showdown.js on the client)</h3>
+	<div id="divREADMEMD"> </div>
+	<div id="divRawREADMEMD"> </div>
+
+</body>
+</html>

@@ -1,0 +1,76 @@
+body {
+	background-color: #00AAAA;
+	color: 'black';
+}
+
+p {
+	color: 'white';
+}
+
+.poemLink {
+	margin-right: 5px;
+}
+
+a {
+	font-size: .8em;
+}
+a:link {color:#000000;}      /* unvisited link */
+a:visited {color:#FFFFFF;}  /* visited link */
+a:hover {color:#FF00FF;}  /* mouse over link */
+a:active {color:#0000FF;}  /* selected link */
+
+
+#numFeetInAMile {
+	visibility: hidden;
+}
+
+.aqua-card {
+	background: #008C9E;
+}
+
+.aqua-card h2 {
+	color: white;
+}
+
+.aqua-card label {
+	font-weight: 600;
+	font-size: 22px;
+	display: inline-block;
+	padding: 3px 5px 1px 1px;
+	text-align: right;
+	width: 10%;
+	color: white;
+}
+
+.aqua-card p {
+	font-weight: 600;
+	font-size: 22px;
+	display: inline-block;
+	padding: 3px 5px 1px 1px;
+	text-align: left;
+	color: darkgreen;	
+	background-color: aqua;
+}
+
+.aqua-card .controlrow {
+	display: block;
+}
+
+.aqua-card input {
+	color: black;
+	font-weight: 400;
+	font-size: 22px;
+	display: inline-block;
+}
+
+.aqua-card.extra-padding {
+	padding: 20px;
+}
+#divREADMEMD {
+	background-color: white;
+}
+
+#divRawREADMEMD {
+	display: hidden;
+	visibility: hidden;
+}

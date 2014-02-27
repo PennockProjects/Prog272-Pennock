@@ -1,0 +1,16 @@
+{
+    "name": "MidtermWeb-Pennock",
+    "version": "1.0.0",
+    "private": true,
+    "scripts": {
+        "start": "node server.js"
+    },
+    "dependencies": {
+        "mongodb": "latest",
+		"express": "latest"
+    },
+    "devDependencies": {
+	    "grunt": "~0.4.2",
+	    "grunt-contrib-jshint": "~0.8.0"
+	}
+}
