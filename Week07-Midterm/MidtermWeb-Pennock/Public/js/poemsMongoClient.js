@@ -18,6 +18,17 @@ PennockProjects.MongoClient = ( function() {'use strict';
 		});
 	};
 	
+	MongoClient.prototype.insertJson= function(callbackSuccessAndError) {
+		$.getJSON("newPoem.json", function(data) {
+			console.log("MongoClient.insertJson for jsonPoem: " + data);
+			$.get('/InsertJsonIntoMongo', { "jsonPoem": data }, function(data) {
+				if(callbackSuccessAndError) {
+					callbackSuccessAndError(data);
+				}
+			});
+		});
+	};
+
 	MongoClient.prototype.deletePoems= function(callbackSuccessAndError) {
 		console.log("MongoClient.deletePoems");
 		$.get('/DeletePoemsInMongo', function(data) {
