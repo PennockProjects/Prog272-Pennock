@@ -2,50 +2,58 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<meta name="generator" content="pandoc">
+	<meta name="generator" content="eclipse">
 	<title>MidtermWeb-Pennock</title>
-	<link href="index.css" rel="stylesheet" type="text/css">
+	<link href="css/index.css" rel="stylesheet" type="text/css">
 	<link rel="shortcut icon" href="favicon.png">
-	<script src="jquery-2.1.0.js"></script>
-	<script src="showdown.js"></script>
-	<script src="index.js"></script>
-	<script src="poemsMongoClient.js"></script>
-	<script src="poemsView.js"></script>
+	<script src="lib/jquery-2.1.0.js"></script>
+	<script src="js/index.js"></script>
+	<script src="js/poemsMongoClient.js"></script>
+	<script src="js/poemsView.js"></script>
 </head>
 <body>
 	<h1>MidtermWeb-Pennock</h1>
 
 	<div class='aqua-card extra-padding'>
-		<fieldset>
+		<fieldset id="poemSelection" class="setAdmin pullleft">
+			<legend>Poem Selection</legend>
+			<div class="divFilter">
+				<label>Keywords</label>
+				<div id='divKeywords'> </div>
+			</div>
+			<div class="divFilter">
+				<label id="labelPoemsBy">Poems by Keyword</label>
+				<div id='divTitlesKeywordFiltered'> </div>
+			</div>
+		</fieldset>
+
+		<fieldset id="dbControls" class="setAdmin">
+			<legend>Database Tasks</legend>
+			<button id="btnReadPoemsInDb" class="btnAdmin">Read All Poems</button>
+			<button id="btnInsertBardToDb" class="btnAdmin">Insert Shakespeare.json</button>
+			<button id="btnDeletePoemsInDb" class="btnAdmin">Delete All Poems</button>
+			<button id="btnInsertNewPoem" class="btnAdmin">Insert newPoem.json</button>
+		</fieldset>
+
+		<fieldset id="poemDisplay" class="setAdmin pullleft">
 			<legend>Poem</legend>
 			<div id='divTitleContent'> </div>
 		</fieldset>
-		<fieldset>
-			<legend>All Titles</legend>
-			<div id='divTitles'> </div>
+
+		<fieldset id="dbResult" class="setAdmin">
+			<legend>Database Result</legend>
+			<div id='divAdminResult'> </div>
 		</fieldset>
-		<fieldset>
-			<legend>Keywords</legend>
-			<div id='divKeywords'> </div>
+
+		<fieldset id="poemControls" class="setAdmin pullleft">
+			<legend>Poem Tasks</legend>
+			<div id="divPoemControls"> </div>
+		</fieldset>
+		<fieldset id="testControls" class="setAdmin">
+			<legend>Client Tests</legend>
+			<a href="Test/poemsMongoClient.runner.html">Run Tests</a>
 		</fieldset>
 	</div>
-
-	<div class='aqua-card extra-padding'>
-		<fieldset>
-			<legend>Admin Tasks</legend>
-			<button id="btnInsertBardToDb">Insert Shakespeare.json in Mongo</button>
-			<button id="btnReadPoemsInDb">Read Poems From Mongo</button>
-			<button id="btnDeletePoemsInDb">Delete Mongo "Poems" Collection</button>
-			<fieldset>
-				<legend>Result</legend>
-				<div id='divAdminResult'> </div>
-			</fieldset>
-		</fieldset>
-	</div>
-
-	<h3>Assignment README.md (interpreted using showdown.js on the client)</h3>
-	<div id="divREADMEMD"> </div>
-	<div id="divRawREADMEMD"> </div>
 
 </body>
 </html>

@@ -12,8 +12,14 @@ var port = process.env.PORT || 30025;
 
 app.get('/InsertShakespeareIntoMongo', function(request, response) {'use strict';
 	console.log('/InsertShakespeareIntoMongo called');
-	mdMongo.mdObj.InsertPoemJsonIntoMongo("Shakespeare.json", response);
+	mdMongo.mdObj.InsertJsonFilePoemIntoMongo("Shakespeare.json", response);
 });
+
+app.get('/InsertJsonIntoMongo', function(request, response) {'use strict';
+	console.log('/InsertJsonIntoMongo called');
+	mdMongo.mdObj.InsertJsonPoemIntoMongo(request, response);
+});
+
 
 app.get('/DeletePoemsInMongo', function(request, response) {'use strict';
 	console.log('/DeletePoemsInMongo called');

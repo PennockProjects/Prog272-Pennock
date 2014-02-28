@@ -17,13 +17,13 @@ var MongoPoem = ( function() {'use strict';
 		}
 
 
-		MongoPoem.prototype.InsertPoemJsonIntoMongo = function(fileName, response) {
+		MongoPoem.prototype.InsertJsonFilePoemIntoMongo = function(fileName, response) {
 
 			fileName = fileName || "Shakespeare.json";
 			var fs = require('fs');
 			var fileContents = fs.readFileSync(fileName, 'utf8');
 			var jsonContents = JSON.parse(fileContents);
-			console.log("MongoPoem.InsertPoemJsonIntoMongo file: " + fileName + " contains: " + jsonContents.length + " records");
+			console.log("MongoPoem.InsertJsonFilePoemIntoMongo file: " + fileName + " contains: " + jsonContents.length + " records");
 
 			MongoClient.connect(urlCurrent, function(err, db) {
 				if (err) {
@@ -41,6 +41,29 @@ var MongoPoem = ( function() {'use strict';
 				});
 			});
 		};
+		
+		MongoPoem.prototype.InsertJsonPoemIntoMongo = function(request, response) {
+
+			var jsonPoem = request.query.jsonPoem;
+			console.log("MongoPoem.InsertJsonPoemIntoMongo jsonPoem: " + jsonPoem + " contains: " + jsonPoem.length + " records");
+
+			MongoClient.connect(urlCurrent, function(err, db) {
+				if (err) {
+					throw err;
+				}
+
+				var collection = db.collection(collectionName);
+				collection.insert(jsonPoem, function(err, docs) {
+
+					collection.count(function(err, count) {
+						console.log(format("record count in mongo = %s", count));
+						db.close();
+						response.send({ "err": err, "count": count});
+					});
+				});
+			});
+		};
+
 		
 		MongoPoem.prototype.deletePoemCollection = function(response) {
 			console.log("MongoPoem.deletePoemCollection");
