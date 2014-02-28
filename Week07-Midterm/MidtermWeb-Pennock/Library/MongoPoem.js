@@ -9,7 +9,7 @@ var MongoPoem = ( function() {'use strict';
 		var url01 = 'mongodb://127.0.0.1:27017/test';
 		var url02 = 'mongodb://http://192.168.1.104/:27017/test';
 		var url05 = 'mongodb://Charlie:Charles@ds033419.mongolab.com:33419/pennockprojects';
-		var urlCurrent = url05;
+		var urlCurrent = url01;
 		
 		// Constructor
 		function MongoPoem() {
