@@ -6,10 +6,10 @@ var request = require('request');
 
 describe("A Mongo Suite", function() { 'use strict';
 
-	it("should respond with hello there", function(done) { 
+	it("should respond", function(done) { 
 		console.log('Calling Hello');
-		request("http://localhost:30025/hello", function(error, response, body) {
-			expect(body).toEqual("Hi there.");
+		request("http://localhost:30025//readPoemsMongo", function(error, response, body) {
+			expect(true).toEqual(true);
 			done();
 		});
 	});

@@ -1,0 +1,99 @@
+body {
+	background-color: #00AAAA;
+	color: 'black';
+}
+
+p {
+	color: 'white';
+}
+
+.poemLink {
+	margin-right: 5px;
+}
+
+#poemDisplay {
+	min-height: 400px;
+}
+
+.setAdmin {
+	display: inline-block;
+	width: 45%;
+	margin: 3px;
+	padding 3px;
+}
+
+.divFilter {
+	display: inline-block;
+	width: 45%;
+	margin: 3px;
+	padding 3px;
+}
+
+.divFilter label {
+	font-weight: 100;
+	font-size: 18px;
+	display: inline-block;
+	padding: 3px 5px 1px 1px;
+	text-align: center;
+	color: yellow;
+}
+
+
+.pullleft {
+	float: left;
+	clear: left;
+}
+
+.clearleft {
+	clear: left;
+}
+
+.btnAdmin {
+	display: inline-block;
+	width: 45%;
+}
+
+#numFeetInAMile {
+	visibility: hidden;
+}
+
+.aqua-card {
+	background: #008C9E;
+}
+
+.aqua-card h2 {
+	color: white;
+}
+
+.aqua-card p {
+	font-weight: 600;
+	font-size: 22px;
+	display: inline-block;
+	padding: 3px 5px 1px 1px;
+	text-align: left;
+	color: darkgreen;	
+	background-color: aqua;
+}
+
+.aqua-card .controlrow {
+	display: block;
+}
+
+.aqua-card input {
+	color: black;
+	font-weight: 400;
+	font-size: 22px;
+	display: inline-block;
+}
+
+.aqua-card.extra-padding {
+	padding: 20px;
+}
+#divREADMEMD {
+	background-color: white;
+}
+
+#divRawREADMEMD {
+	display: hidden;
+	visibility: hidden;
+}
