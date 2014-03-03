@@ -6,73 +6,44 @@ var request = require('request');
 
 describe("A Mongo Suite", function() { 'use strict';
 
-	it("should respond", function(done) { 
-		console.log('Calling Hello');
-		request("http://localhost:30025//readPoemsMongo", function(error, response, body) {
-			expect(true).toEqual(true);
-			done();
-		});
-	});
+	var server = 'http://localhost:30025/';
 	
-	it("should respond with goober", function(done) { 
-		console.log('Calling Hello');
-		request("http://localhost:30025/barfoo", function(error, response, bar) {
-			console.log(response.statusCode);
-			expect(bar).toEqual("foobar");
-			done();
-		});
+	beforeEach(function() {
+		
 	});
 
-	it("should get total document count", function(done) {
-		request("http://localhost:30025/getDocumentCount", function(error, response, body) {
-			console.log("Calling get Document Count");			
-			// Convert result from a JSON string to a JSON object
-			body = JSON.parse(body);			
-			//console.log(body);			
-			expect(body.documentCount).toEqual(9);
+	it("should deletePoemCollection a JSON document", function(done) {
+		request("http://localhost:30025/DeletePoemsInMongo", function(error, response, output) {
+			console.log("/DeletePoemsInMongo called: " + output);
+			var output = JSON.parse(output);
+			expect(output.result).toBe("collection: Poems deleted");
 			done();
 		});
 	});
 	
-	it("should read two documents", function(done) {
-		request("http://localhost:30025/readTwo", function(error, response, body) {
-			console.log("Calling test two records");
-			
-			// Convert result from a JSON string to a JSON object
-			body = JSON.parse(body);
-			
-			//console.log(body);			
-			expect(body.length).toEqual(2);
-			done();
-		});
-	});
-	
-	it("should ask for 3 records", function(done) {
-		request("http://localhost:30025/readDocuments?numRequested=3", function(error, response, body) {
-			console.log("Calling ask for 3 records");
-			
-			// Convert result from a JSON string to a JSON object
-			body = JSON.parse(body);
-			
-			//console.log(body);			
-			expect(body.length).toEqual(3);
-			done();
-		});
-	});
-	
-	it("should read all the documents", function(done) {
-		request("http://localhost:30025/readAll", function(error, response, body) {
-			console.log("Calling ask for all documents");
-			
-			// Convert result from a JSON string to a JSON object
-			body = JSON.parse(body);
-			
-			//console.log(body);			
-			expect(body.length).toEqual(9);
+	it("should insertIntoCollection a JSON document", function(done) {
+		request("http://localhost:30025/InsertShakespeareIntoMongo", function(error, response, output) {
+			console.log("/InsertShakespeareIntoMongo called: " + output);
+			var output = JSON.parse(output);
+			expect(output.count).toBe(154);
 			done();
 		});
 	});
 	
 	
+	it("should call /InsertJsonIntoMongo and insert a json poem", function(done) {
+		var poem = [{
+		   "title":"title",
+		   "author": "author",
+		   "keywords": ["key1", "key2"],
+		   "content": "content"
+		}];
 
+		request("http://localhost:30025/InsertJsonIntoMongo?jsonPoem="+poem, function(error, response, output) {
+			console.log("/InsertJsonIntoMongo called: " + output);
+			var output = JSON.parse(output);			
+			expect(output.count).toBe(155);
+			done();
+		});
+	});
 }); 
