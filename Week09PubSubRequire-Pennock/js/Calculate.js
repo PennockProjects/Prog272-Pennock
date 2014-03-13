@@ -5,9 +5,9 @@
 // create the global object
 var PubSub = {};
 
-PubSub.Calculate = (function() {
+define([ 'jquery', 'tinyPubSub' ], function() {
 
-	function Calculate() {
+	function calculate() {
 		$.subscribe('add', addMath);
 		$.subscribe('subtract', subMath);
 		$.subscribe('multiply', timesMath);
@@ -39,6 +39,6 @@ PubSub.Calculate = (function() {
 			result : result
 		});
 	}
-	return Calculate;
 
-}());
+	return calculate;
+});

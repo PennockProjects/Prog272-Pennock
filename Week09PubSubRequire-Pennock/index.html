@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Week09PubSubRequire-Pennock</title>        
+		<link href="index.css" rel="stylesheet" type="text/css">
+		<link rel="shortcut icon" href="favicon.png">
+        <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script data-main="js/Main" src="js/require.js"></script>
+    </head>
+    <body>
+        <h1>Week09PubSubRequire-Pennock</h1>
+		<div class='aqua-card extra-padding'>
+			
+			<div class="leftDiv">
+		        <label for="operandA" id="labelA">First Number</label>
+		        <input type="number" name="operandA" id="inputA" value="3" />
+			</div>
+	        
+        	<div class="centerDiv">
+		        <button id="btnAdd">Add</button>
+		        <button id="btnSubtract">Subtract</button>
+		        <button id="btnMultiply">Multiply</button>
+        	</div>
+
+			<div class="rightDiv">
+		        <label for="operandB">Second Number</label>
+		        <input type="number" name="operandB" id="inputB" value="2" />
+			</div>
+			<fieldset>
+				<legend>Result</legend>
+				<p id='pResult'>Click a button above to calculate</p>
+			</fieldset>
+		</div>
+    </body>
+</html>

@@ -2,11 +2,11 @@
  * @author John Pennock
  */
 
-// Publisher
-PubSub.CalculateUI = (function() {
+define([ 'jquery', 'tinyPubSub' ], function() {
+
 	var operandA, operandB;
 
-	function CalculateUI() {
+	function calculateUI() {
 		$("#btnAdd").on("click", add);
 		$("#btnSubtract").on("click", subtract);
 		$("#btnMultiply").on('click', multiply);
@@ -47,11 +47,5 @@ PubSub.CalculateUI = (function() {
 		});
 	}
 
-	return CalculateUI;
-
-}());
-
-$(document).ready(function() {
-	new PubSub.Calculate();
-	new PubSub.CalculateUI();
+	return calculateUI;
 });
