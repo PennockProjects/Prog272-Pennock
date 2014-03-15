@@ -1,0 +1,88 @@
+body {
+	background-color: #00AAAA;
+	color: 'black';
+}
+
+p {
+	color: 'black';
+}
+
+button {
+	display: block;
+	margin: 0 auto;
+}
+
+.leftDiv, .rightDiv, .centerDiv {
+	display: inline-block;
+}
+
+.leftDiv, .rightDiv {
+	width: 35%;
+}
+
+.leftDiv {
+	text-align: right;
+}
+
+.centerDiv {
+	text-align: center;
+	width: 19%;
+}
+
+.aqua-card {
+	background: #008C9E;
+}
+
+.aqua-card h2 {
+	color: white;
+}
+
+.aqua-card label {
+	font-weight: 300;
+	font-size: 16px;
+	display: block;
+	padding: 3px 5px 1px 1px;
+	color: white;
+}
+
+.aqua-card p {
+	font-weight: 600;
+	font-size: 22px;
+	display: inline-block;
+	padding: 3px 5px 1px 1px;
+	text-align: center;
+	width: 20%;
+	color: darkgreen;	
+	background-color: lightyellow;
+}
+
+.aqua-card .controlrow {
+	display: block;
+}
+
+.aqua-card input {
+	color: black;
+	font-weight: 400;
+	font-size: 22px;
+	display: inline-block;
+	width: 50%;
+}
+
+.aqua-card.extra-padding {
+	padding: 20px;
+}
+
+#labelA, #inputA {
+	text-align: right;
+	padding-right: 3px;
+}
+
+.aqua-card legend {
+	text-align: center;
+}
+
+.aqua-card fieldset {
+	text-align: center;
+	width: 87%;
+	display: block;
+}

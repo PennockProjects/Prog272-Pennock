@@ -8,12 +8,12 @@ module.exports = function(grunt) { 'use strict';
 				ignores: [
 					'**/coverage/**',
 					'**/node_modules/**',
-					'**/angular.js',
-					'**/angular-mocks.js',
+					'**/boot.js',
+					'**/console.js',
 					'**/jquery*.js',
-					'**/bootstrap.min.js',
-					'**/crafty.js',
-					'**/showdown.js',
+					'**/jasmine-html.js',
+					'**/jasmine-jquery.js',
+					'**/jasmine.js',
 					'**/qunit-1.13.0.css',
 					'**/qunit-1.13.0.js'
 				],
