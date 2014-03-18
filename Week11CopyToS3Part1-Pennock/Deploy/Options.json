@@ -1,6 +1,6 @@
 [
 	{
-		"pathToConfig": "/home/adminuser/Git/Prog272-Pennock/Week11CopyToS3Part1-Pennock/Deploy/config.json",
+		"pathToConfig": "/home/adminuser/Keys/config.json",
 		"reallyWrite": true,
 		"bucketName": "prog272.pennockprojects.com",
 		"folderToWalk": "/home/adminuser/Git/Prog272-Pennock/Week11CopyToS3Part1-Pennock/site/Site",
@@ -9,11 +9,11 @@
 		"createIndex": false,
 		"filesToIgnore": ["Thumbs.db", ".gitignore", "MyFile.html"]
 	}, {
-		"pathToConfig": "/home/charlie/config.json",
+		"pathToConfig": "c:\\Dev\\Keys\\config.json",
 		"reallyWrite": true,
-		"bucketName": "bucket01.elvenware.com",
-		"folderToWalk": "/var/www/bc",
-		"s3RootFolder": "FilesFour",
+		"bucketName": "prog272.pennockprojects.com",
+		"folderToWalk": "C:\\Dev\\GitHub\\Prog272-Pennock\\Week11CopyToS3Part1-Pennock\\site\\Site",
+		"s3RootFolder": "www",
 		"createFolderToWalkOnS3": true,
 		"createIndex": false,
 		"filesToIgnore": ["Thumbs.db", ".gitignore", "MyFile.html"]
