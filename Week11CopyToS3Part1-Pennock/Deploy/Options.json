@@ -7,7 +7,8 @@
 		"s3RootFolder": "www",
 		"createFolderToWalkOnS3": true,
 		"createIndex": false,
-		"filesToIgnore": ["Thumbs.db", ".gitignore", "MyFile.html"]
+		"filesToIgnore": ["Thumbs.db", ".gitignore", "MyFile.html"],
+		"endUrl": "prog272.pennockprojects.com.s3-website-us-east-1.amazonaws.com"
 	}, {
 		"pathToConfig": "c:\\Dev\\Keys\\config.json",
 		"reallyWrite": true,
@@ -16,7 +17,8 @@
 		"s3RootFolder": "www",
 		"createFolderToWalkOnS3": true,
 		"createIndex": false,
-		"filesToIgnore": ["Thumbs.db", ".gitignore", "MyFile.html"]
+		"filesToIgnore": ["Thumbs.db", ".gitignore", "MyFile.html"],
+		"endUrl": "prog272.pennockprojects.com.s3-website-us-east-1.amazonaws.com"
 	}, {
 		"pathToConfig": "c:\\src\\config\\config.json",
 		"reallyWrite": true,
