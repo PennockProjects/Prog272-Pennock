@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>MarkdownManager-Pennock</title>
+		<link rel="shortcut icon" href="favicon.png">
+		<link rel="stylesheet" href="/stylesheets/style.css">
+		<script data-main="Main" src="require.js"></script>
+		<!-- script src="jquery-1.11.0.js"></script>
+		<script src="AwsUi.js"></script -->
+	</head>
+	<body>
+		<h1>MarkdownManager-Pennock</h1>
+		<div>
+			<img src="Bar02.png">
+		</div>
+		<button id="readFileConfigs">Get Config from Files</button>
+		<button id="readConfigs">Get Config from Mongo</button>
+		<button id="tranformBackButton">
+			&lt;&lt;
+		</button>
+		<button id="transformForwardButton">
+			&gt;&gt;
+		</button>
+		<p id="copyResultA"> </p>
+		<div class="displayKing">
+			<h2>MarkdownTransformConfig.json</h2>
+			<label for="pathToPython">Path to Python</label>
+			<textarea class="optionField" id="pathToPython">
+				-
+			</textarea>
+			<label for="copyFrom">Markdown files at</label>
+			<textarea class="optionField" id="copyFrom"> - </textarea>
+			<button id="btnWalkMDDir">Walk</button>
+			
+			<label for="copyTo">Copy html files to</label>
+			<textarea class="optionField" id="copyTo"> - </textarea>
+			<button id="btnWalkHTMLDir">Walk</button>
+
+			<label for="filesToCopy">Files to copy</label>
+			<textarea class="optionField" id="filesToCopy">
+				-
+			</textarea>
+			<div>
+				<button id="saveConfigs" class="saveConfig">Save Config to disk</button>
+				<button id="insertConfigs" class="saveConfig">Save Config to Mongo</button>
+			</div>
+			<div>
+				<button id="readMds">Get md files from Mongo</button>
+				<button id="createPoemsFromJson">Create *NEW* md files from Mongo Poems</button>
+				<button id="buildAll">Transform md files and copy</button>
+			</div>
+			<button id="clearResult">Clear Result</button>
+			<div class="displayKing" id="resultDiv">
+			</div>
+		</div>
+	
+
+		<div>
+			<img src="Bar02.png">
+		</div>
+		<button id="listBuckets">
+			Get Buckets
+		</button>
+		<button id="copyToS3">
+			Copy to S3
+		</button>
+		<button id="getOptions">
+			Get Options
+		</button>
+		<button id="backButton">
+			&lt;&lt;
+		</button>
+		<button id="forwardButton">
+			&gt;&gt;
+		</button>
+		<ul id="buckets"> </ul>
+		<div class="displayKing">
+			<h2>Options.json</h2>
+			<label for="documentCount">Document Count</label>
+			<textarea class="optionField" id="documentCount">
+				-
+			</textarea>
+			<label for="currentDocument">Current Document</label>
+			<textarea class="optionField" id="currentDocument">
+				-
+			</textarea>
+			<label for="pathToConfig">pathToConfig</label>
+			<textarea class="optionField" id="pathToConfig">
+				-
+			</textarea>
+			<label for="reallyWrite">reallyWrite</label>
+			<textarea class="optionField" id="reallyWrite">
+				-
+			</textarea>
+			<label for="bucketName">bucketName</label>
+			<textarea class="optionField" id="bucketName">
+				-
+			</textarea>
+			<label for="folderToWalk">folderToWalk</label>
+			<textarea class="optionField" id="folderToWalk">
+				-
+			</textarea>
+			<label for="s3RootFolder">s3RootFolder</label>
+			<textarea class="optionField" id="s3RootFolder">
+				-
+			</textarea>
+			<label for="createFolderToWalkOnS3">createFolderToWalkOnS3</label>
+			<textarea class="optionField" id="createFolderToWalkOnS3">
+				-
+			</textarea>
+			<label for="createIndex">createIndex</label>
+			<textarea class="optionField" id="createIndex">
+				-
+			</textarea>
+			<label for="filesToIgnore">filesToIgnore</label>
+			<textarea class="optionField" id="filesToIgnore">
+				-
+			</textarea>
+		</div>
+		<div>
+			<img src="Bar02.png">
+		</div>
+		<div class="displayKing">
+			<h2>Files Copied</h2>
+			<ul id="buildData"> </ul>
+			<h3>Website on S3</h3>
+			<a id="S3Link" href="" target="_blank">Website on S3</a>
+		</div>
+		
+	</body>
+</html>

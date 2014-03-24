@@ -1,0 +1,69 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #000000;
+}
+
+.displayKing {
+	overflow: hidden;	
+	border: solid black 1px;
+	background-color: #00DDAA;	
+	width: 788px;
+	padding: 5px;
+}
+
+.displayKing label {	
+	display: inline-block;
+	padding: 2px;	
+	width: 15%;
+	text-align: right;
+	vertical-align:top;
+}
+
+.displayKing p {
+	display: inline-block;
+	padding-left: 3px;
+	width:65%;
+	border: solid black 1px;
+	background-color: #00BBFF;
+	margin: 1%;
+}
+
+.optionField {
+	display: inline-block;
+	padding-left: 3px;
+	width:75%;
+	height: 16px;    
+	border: solid black 1px;
+	background-color: rgb(255,255,255);
+	margin: 0px 0px 0px 3px;
+}
+
+.modified {
+	background-color: rgb(245,135,135);
+}
+
+.displayKing a {
+	display: inline-block;
+	padding-left: 3px;
+	width:95%;    
+	border: solid black 1px;
+	background-color: #00BBFF;
+	margin: 1%;
+	color: #000000;
+}
+
+.displayKing button {	
+	vertical-align:top;
+}
+
+.saveConfig {
+	float: right;
+}
+
+div {
+	clear:both;
+}

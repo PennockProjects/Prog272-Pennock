@@ -1,0 +1,13 @@
+[
+	{
+		"pathToPython": "C:\\Python33\\Python.exe",
+		"copyFrom": "C:\\Users\\John\\Dropbox\\StackEdit",
+		"copyTo": "C:\\Dev\\GitHub\\Prog272-Pennock\\MarkdownManager-Pennock\\site\\Site",
+		"filesToCopy": ["Sonnet1", "Sonnet2", "Sonnet3", "Sonnet4", "Sonnet5"]
+	}, {
+		"pathToPython": "/usr/bin/python3.3",
+		"copyFrom": "/home/adminuser/Dropbox/StackEdit",
+		"copyTo": "/home/adminuser/Git/Prog272-Pennock/MarkdownManager-Pennock/site/Site",
+		"filesToCopy": ["Sonnet1", "Sonnet2", "Sonnet3", "Sonnet4", "Sonnet5"]
+	}
+]
