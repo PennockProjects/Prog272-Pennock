@@ -87,13 +87,35 @@ app.get('/getOptions', function(request, response) {
 	response.send(options);
 });
 
+var buildAll = function(response, config, index) { 'use strict';
+console.log("BuildAll was called");
+// var config = fs.readFileSync("MarkdownTransformConfig.json", 'utf8');	
+// config = JSON.parse(config);
+var command = config[index].pathToPython + " MarkdownTransform.py -i " + index;	
+try {
+	exec(command, function callback(error, stdout, stderr) {
+		// Read in the HTML send the HTML to the client
+		console.log("convertToHtml was called er: ", error);
+		console.log("convertToHtml was called so: ", stdout);
+		console.log("convertToHtml was called se: ", stderr);
+		response.send({ "result": "Success", "data": stdout });
+	});
+} catch(e) {
+	console.log(e.message);
+	response.send( { "result" : "error", "data": e });
+}
+};
+
+
 var buildAll = function(response, config, index) {
 	'use strict';
-	console.log("BuildAll was called");
+	console.log("BuildAll was called with config: " + config + " index: " + index);
 	// var config = fs.readFileSync("MarkdownTransformConfig.json", 'utf8');
 	// config = JSON.parse(config);
-	var command = config[index].pathToPython + " MarkdownTransform.py -i "
-			+ index;
+	var contents = config;
+	console.log("buildAll contents[index] = " + contents[index]);
+	var command = contents[index].pathToPython + " MarkdownTransform.py -i " + index;
+	console.log("buildAll command: " + command);
 	try {
 		exec(command, function callback(error, stdout, stderr) {
 			// Read in the HTML send the HTML to the client
@@ -114,12 +136,12 @@ var buildAll = function(response, config, index) {
 	}
 };
 
-app.get('/buildAll', function(request, response) {
-	'use strict';
-	console.log("buildAll called");
+app.get('/buildAll', function(request, response) { 'use strict';
 	var options = JSON.parse(request.query.options);
+	console.log("buildAll called with options: " + JSON.stringify(options));	
 	buildAll(response, options, request.query.index);
 });
+
 
 // File Routes
 app.get('/walk', function(request, response) {
@@ -150,6 +172,34 @@ app.get('/walk', function(request, response) {
 	});
 });
 
+app.get('/writeFiles', function(request, response) {
+	var i, currObj, fileNames = [];
+	var jsonObjects = request.query.jsonObjects;
+	var rootDir = request.query.rootDir || (__dirname + "/");
+	message("/insertFiles rootDir: '" + rootDir + "' numberOfObjects: " + jsonObjects.length);		
+	
+	for(i=0; i < jsonObjects.length ; i++) {
+		currObj = jsonObjects[i];
+		if(currObj.fileName && rootDir) {
+			try {
+				fs.writeFileSync(rootDir + currObj.fileName, JSON.stringify(currObj.contents, null, 4), 'utf8')				
+				console.log("filname: '" + currObj.fileName);
+				fileNames.push(currObj.fileName);
+			} catch (e) {
+				console.log(e.message);
+				response.send({
+					"result" : "error",
+					"data" : e
+				});
+			}
+		}
+	}
+	response.send({
+		result: "Success",
+		fileNames: fileNames
+	})
+});
+
 
 
 //Mongo Routes
@@ -164,11 +214,9 @@ app.get('/read', function(request, response) {
 app.get('/insertData', function(request, response) {
 	'use strict';
 	var collectionName = request.query.collectionName;
-	message('Write called: ' + collectionName);
-	var fileName = collectionName + '.json';
-	var fileContent = fs.readFileSync(fileName, 'utf8');
-	queryMongo.insertIntoCollection(response, collectionName, JSON
-			.parse(fileContent));
+	var jsonObjects = request.query.jsonObjects;
+	message('/insertData into : ' + collectionName + " with data: " + JSON.stringify(jsonObjects));
+	queryMongo.insertIntoCollection(response, collectionName, jsonObjects);
 });
 
 app.get('/readCollectionFiles', function(request, response) {
@@ -182,30 +230,34 @@ app.get('/insertFiles', function(request, response) {
 	'use strict';
 	var collectionName = request.query.collectionName;
 	var fileNames = request.query.fileNames;
+	var rootDir = request.query.rootDir;
+	var keywords = request.query.keywords;
+	
 	if(fileNames) {
 		message('/insertFiles collectionName: ' + collectionName + " numberOfFiles: " + fileNames.length);		
 		var i, fileName, fileContents, jsonContents;
 		var fs = require('fs');
-		var filesCollection = {};
+		var filesCollection = [];
 		
 		for(var i=0; i<fileNames.length; i++) {
-			fileName = fileNames[i];
-			console.log("/insertFiles - filesName: '" + fileName + "'");
-			fileContents = fs.readFileSync(fileName+".json", 'utf8');
+			var fileObject = {};
+			fileObject.fileName = fileNames[i];
+			fileContents = fs.readFileSync(fileObject.fileName, 'utf8');
 			jsonContents = JSON.parse(fileContents);
-			filesCollection[fileName] = jsonContents;
-			console.log("/insertFiles - records: " + jsonContents.length);
+			
+			fileObject.contents = JSON.parse(fileContents);
+			fileObject.rootDir = rootDir;
+			fileObject.keywords = keywords;
+			console.log("/insertFiles - fileName: '" + fileObject.fileName + "' with records: " + fileObject.contents.length);
+			filesCollection.push(fileObject);
 		}
-		console.log(filesCollection["MarkdownTransformConfig"]);
+		console.log(filesCollection);
 		queryMongo.insertIntoCollection(response, collectionName, filesCollection);
 	}
 	response.send({
 		result : "Error",
 		error : "No fileNames"
 	});
-});
-
-app.get('/writeFiles', function(request, response) {
 });
 
 app.get('/deleteData', function(request, response) {

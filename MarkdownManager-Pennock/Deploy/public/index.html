@@ -13,17 +13,29 @@
 		<div>
 			<img src="Bar02.png">
 		</div>
-		<button id="readFileConfigs">Get Config from Files</button>
-		<button id="readConfigs">Get Config from Mongo</button>
-		<button id="tranformBackButton">
-			&lt;&lt;
-		</button>
-		<button id="transformForwardButton">
-			&gt;&gt;
-		</button>
-		<p id="copyResultA"> </p>
 		<div class="displayKing">
-			<h2>MarkdownTransformConfig.json</h2>
+			<div>
+				<h4 class="configActionTitle">Read Configs</h4>
+				<button id="readFileConfigs" class="configControls">Get Configs from disk</button>
+				<button id="readConfigs" class="configControls">Get Configs from Mongo</button>
+			</div>
+			<div>
+				<h4 class="configActionTitle">Write Configs</h4>
+				<button id="saveConfigs" class="configControls">Save Configs to disk</button>
+				<button id="deleteDBConfigs" class="configControls">Delete All Configs in Mongo</button>
+				<button id="insertConfigs" class="configControls">Insert Configs in Mongo</button>
+			</div>
+		</div>
+		<div class="displayKing">
+			<div>
+				<h2 class="configTitle">MarkdownTransformConfig.json</h2>
+				<button class="transportControls" id="tranformBackButton">
+					&lt;&lt;
+				</button>
+				<button class="transportControls" id="transformForwardButton">
+					&gt;&gt;
+				</button>				
+			</div>
 			<label for="pathToPython">Path to Python</label>
 			<textarea class="optionField" id="pathToPython">
 				-
@@ -40,42 +52,18 @@
 			<textarea class="optionField" id="filesToCopy">
 				-
 			</textarea>
-			<div>
-				<button id="saveConfigs" class="saveConfig">Save Config to disk</button>
-				<button id="insertConfigs" class="saveConfig">Save Config to Mongo</button>
-			</div>
-			<div>
-				<button id="readMds">Get md files from Mongo</button>
-				<button id="createPoemsFromJson">Create *NEW* md files from Mongo Poems</button>
-				<button id="buildAll">Transform md files and copy</button>
-			</div>
-			<button id="clearResult">Clear Result</button>
-			<div class="displayKing" id="resultDiv">
-			</div>
 		</div>
-	
-
-		<div>
-			<img src="Bar02.png">
-		</div>
-		<button id="listBuckets">
-			Get Buckets
-		</button>
-		<button id="copyToS3">
-			Copy to S3
-		</button>
-		<button id="getOptions">
-			Get Options
-		</button>
-		<button id="backButton">
-			&lt;&lt;
-		</button>
-		<button id="forwardButton">
-			&gt;&gt;
-		</button>
-		<ul id="buckets"> </ul>
+		
 		<div class="displayKing">
-			<h2>Options.json</h2>
+			<div>
+				<h2 class="configTitle">Options.json</h2>
+				<button class="transportControls" id="backButton">
+					&lt;&lt;
+				</button>
+				<button class="transportControls" id="forwardButton">
+					&gt;&gt;
+				</button>				
+			</div>
 			<label for="documentCount">Document Count</label>
 			<textarea class="optionField" id="documentCount">
 				-
@@ -84,22 +72,29 @@
 			<textarea class="optionField" id="currentDocument">
 				-
 			</textarea>
+			
 			<label for="pathToConfig">pathToConfig</label>
 			<textarea class="optionField" id="pathToConfig">
 				-
 			</textarea>
+
 			<label for="reallyWrite">reallyWrite</label>
 			<textarea class="optionField" id="reallyWrite">
 				-
 			</textarea>
+
 			<label for="bucketName">bucketName</label>
 			<textarea class="optionField" id="bucketName">
 				-
 			</textarea>
+			<button id="listBuckets">List</button>
+
 			<label for="folderToWalk">folderToWalk</label>
 			<textarea class="optionField" id="folderToWalk">
 				-
 			</textarea>
+			<button id="btnWalkHTMLDir2">Walk</button>
+
 			<label for="s3RootFolder">s3RootFolder</label>
 			<textarea class="optionField" id="s3RootFolder">
 				-
@@ -117,6 +112,23 @@
 				-
 			</textarea>
 		</div>
+			<div>
+				<!-- <button id="readMds">Get md files from Mongo</button>
+				<button id="createPoemsFromJson">Create *NEW* md files from Mongo Poems</button> 
+				-->
+				<button id="buildAll">Transform md files and copy</button>
+			</div>
+			<button id="clearResult">Clear Result</button>
+			<div class="displayKing" id="resultDiv">
+			</div>
+	
+
+		<div>
+			<img src="Bar02.png">
+		</div>
+		<button id="copyToS3">
+			Copy to S3
+		</button>
 		<div>
 			<img src="Bar02.png">
 		</div>

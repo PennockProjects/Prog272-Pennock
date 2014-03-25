@@ -94,46 +94,60 @@ var QueryMongo = (function() {
 	};
 
 	// Will create collection if it does not exist
-	QueryMongo.prototype.insertIntoCollection = function(response,
-			collectionName, objectToInsert) {
+	QueryMongo.prototype.insertIntoCollection = function(response, collectionName, objectToInsert) {
 		message("QueryMongo.insertIntoCollection called: " + collectionName);
 		console.log(objectToInsert);
-		getDatabase(
-				response,
-				collectionName,
-				function(response, collectionName, database) {
-					var collection = collectionList.getCollectionByName(
-							database, collectionName);
-					if (collection !== null) {
-						collection
-								.insert(
-										objectToInsert,
-										function(err, docs) {
-											if (err) {
-												throw err;
-											}
-											console
-													.log("QueryMongo.insertIntoCollection insert succeeded");
-											response.send({
-												result : "Success",
-												mongoDocument : docs
-											});
-										});
-					} else {
-						response.send({
-							result : 'Could not get collection'
-						});
+		getDatabase(response, collectionName, function(response, collectionName, database) {
+			var collection = collectionList.getCollectionByName(database, collectionName);
+			if (collection !== null) {
+				collection.insert(objectToInsert, function(err, docs) {
+					if (err) {
+						throw err;
 					}
-
+					console.log("QueryMongo.insertIntoCollection insert succeeded");
+					response.send({
+						result : "Success",
+						mongoDocument : docs
+					});
 				});
+			} else {
+				response.send({
+					result : 'Could not get collection'
+				});
+			}
+		});
+	};
+	
+	// Will create collection if it does not exist
+	QueryMongo.prototype.updateIntoCollection = function(response, collectionName, objectToUpdate) {
+		message("QueryMongo.updateIntoCollection called: " + collectionName);
+		console.log(objectToUpdate);
+		getDatabase(response, collectionName, function(response, collectionName, database) {
+			var collection = collectionList.getCollectionByName(database, collectionName);
+			if (collection !== null) {
+				collection.update(objectToUpdate.query, objectToInsert.update, function(err, docs) {
+					if (err) {
+						throw err;
+					}
+					console.log("QueryMongo.updateIntoCollection insert succeeded");
+					response.send({
+						result : "Success",
+						mongoDocument : docs
+					});
+				});
+			} else {
+				response.send({
+					result : 'Could not get collection'
+				});
+			}
+		});
 	};
 
+
 	QueryMongo.prototype.removeAll = function(response, collectionName) {
-		console.log("QueryMongo.removeAll called");
-		getDatabase(response, collectionName, function(response,
-				collectionName, database) {
-			var collection = collectionList.getCollectionByName(database,
-					collectionName);
+		console.log("QueryMongo.removeAll called on " + collectionName);
+		getDatabase(response, collectionName, function(response, collectionName, database) {
+			var collection = collectionList.getCollectionByName(database, collectionName);
 			if (collection !== null) {
 				collection.remove(function(err, data) {
 					if (err) {
