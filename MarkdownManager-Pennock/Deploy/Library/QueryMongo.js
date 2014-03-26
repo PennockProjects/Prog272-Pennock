@@ -74,19 +74,17 @@ var QueryMongo = (function() {
 		console.log("getCollectionData called on collectionName: " + collectionName);
 		var response = initResponse;
 
-		getDatabase(response, collectionName, function(response,
-				collectionName, database) {
+		getDatabase(response, collectionName, function(response, collectionName, database) {
 			console.log("getCollectionData->callback on: " + collectionName);
 
-			var collection = collectionList.getCollectionByName(database,
-					collectionName);
+			var collection = collectionList.getCollectionByName(database, collectionName);
 
 			collection.find().toArray(function(err, theArray) {
 				if (err) {
 					console.log("Error in getCollection: " + err);
 				}
 				console.log("getCollectionData->callback.find - sending back the data.");
-				console.log(theArray);
+//				console.log(theArray);
 				response.send(theArray);
 			});
 

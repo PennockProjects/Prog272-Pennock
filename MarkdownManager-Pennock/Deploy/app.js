@@ -16,6 +16,7 @@ var MongoClient = require('mongodb').MongoClient;
 var format = require('util').format;
 var queryMongo = require('./Library/QueryMongo').QueryMongo;
 var walk = require('./Library/WalkJsObjects').walk;
+var mkdirp = require('mkdirp');
 
 function message(value) {
 	'use strict';
@@ -172,26 +173,54 @@ app.get('/walk', function(request, response) {
 	});
 });
 
-app.get('/writeFiles', function(request, response) {
-	var i, currObj, fileNames = [];
-	var jsonObjects = request.query.jsonObjects;
-	var rootDir = request.query.rootDir || (__dirname + "/");
-	message("/insertFiles rootDir: '" + rootDir + "' numberOfObjects: " + jsonObjects.length);		
+var createDirectory = function(rootDir, subDir, callback, param) {
+	mkdirp(rootDir + subDir, function(err) {
+		if (err) {
+			console.log("CreateDirectory error: " + err);
+		} else {
+			if(callback) {
+				callback(rootDir, subDir, param);			
+			}			
+		}
+	});	
+}
+
+var createFile = function(pathAndName, contents) {
+	try {
+		fs.writeFileSync(pathAndName, contents, 'utf8');										
+	} catch (e) {
+		console.log(e.message);
+		response.send({
+			"result" : "error",
+			"data" : e
+		});
+	}	
+};
+
+app.post('/writeFiles', function(request, response) {
+	var i, fileNames = [];
+	var jsonObjects = request.body.jsonObjects;
+	var rootDir = request.body.rootDir || __dirname;
+	var subDir, fileName, contents;
+	
+	message("/writeFiles rootDir: '" + rootDir + "' numberOfObjects: " + jsonObjects.length);
+	rootDir += "/";
 	
 	for(i=0; i < jsonObjects.length ; i++) {
-		currObj = jsonObjects[i];
-		if(currObj.fileName && rootDir) {
-			try {
-				fs.writeFileSync(rootDir + currObj.fileName, JSON.stringify(currObj.contents, null, 4), 'utf8')				
-				console.log("filname: '" + currObj.fileName);
-				fileNames.push(currObj.fileName);
-			} catch (e) {
-				console.log(e.message);
-				response.send({
-					"result" : "error",
-					"data" : e
-				});
+		subDir = jsonObjects[i].subDir;
+		fileName = jsonObjects[i].fileName;
+
+		if(fileName && rootDir) {
+			if(subDir) {
+				createDirectory(rootDir, subDir, function(rootDir, subDir, param) {
+					createFile(rootDir + subDir + "/" + jsonObjects[param].fileName, jsonObjects[param].contents);					
+					console.log("/writeFiles - " + jsonObjects[param].fileName + " writeFileSync Subdir and ASYNChronously");
+				}, i);
+			} else {
+				createFile(rootDir + jsonObjects[i].fileName, JSON.stringify(jsonObjects[i].contents, null, 4));					
+				console.log("/writeFiles - " + jsonObjects[i].fileName + " writeFileSync Rootdir and SYNChronously");
 			}
+			fileNames.push(fileName);
 		}
 	}
 	response.send({

@@ -16,6 +16,7 @@
         "endUrl": "https://s3.amazonaws.com/prog272.pennockprojects.com/www/index.html"
     },
     {
+        "index": "2",
         "pathToConfig": "/home/adminuser/Keys/config.json",
         "reallyWrite": "true",
         "bucketName": "prog272.pennockprojects.com",

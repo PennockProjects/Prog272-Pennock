@@ -6,14 +6,14 @@ define(['jquery'], function() {'use strict';
     var dataIndex = 0;
     var dataIndexTransform = 0;
     var endUrl;
-	var collections = ['configFiles', 'poems'];
+	var collections = ['configFiles', 'Poems'];
 
     function AwsUi() {
     	$("#readFileConfigs").on("click", getFileConfigs );
     	$("#readConfigs").on("click", readDBConfigs);
         $("#saveConfigs").on("click", saveConfigsToDisk);
         $("#deleteDBConfigs").on("click", deleteDbConfigs);
-        $("#insertConfigs").on("click", insertConfigs)
+        $("#insertConfigs").on("click", insertConfigs);
     	
         $("#transformForwardButton").click(forwardTransform);
         $("#tranformBackButton").click(backwardTransform);
@@ -21,6 +21,9 @@ define(['jquery'], function() {'use strict';
         $("#backButton").click(backward);
 
         $("#listBuckets").click(listBuckets);
+        
+        $("#readDbMds").on("click", readDbMds);
+        $("#writeDbMds").on("click", writeDbMds);
 
         $("#copyToS3").click(copyToS3);
         $("#buildAll").click(buildAll);
@@ -210,8 +213,9 @@ define(['jquery'], function() {'use strict';
     //	  While I can store everything, the python transform gets confused unless it's in contents only format.
     var saveConfigsToDisk = function() {
     	var jsonObjects = createJsonConfigs();
-    	$.get('/writeFiles', {
-			jsonObjects : jsonObjects
+    	$.post('/writeFiles', {
+			jsonObjects : jsonObjects,
+			stringify: true
 		}, function(data) {
 			console.log(data);
 			$("#resultDiv").html(JSON.stringify(data));
@@ -244,7 +248,7 @@ define(['jquery'], function() {'use strict';
 			}
 		});
     };
-    
+
     // This one writes the configs to DB.
     //    note, the DB contains all the keywords unlike the write to disk.
     //    NOTE2: it adds configs, does not update them.
@@ -274,9 +278,69 @@ define(['jquery'], function() {'use strict';
    				$("#resultDiv").html("<h4>delete Db Configs</h4>" + JSON.stringify(data));
         	});
     	}
-    }
-
+    };
     
+// Database Poems //////////////////////////////
+    var poems = [];
+    
+   var readDbMds = function() {
+		$.get('/readCollectionFiles', {
+			collectionName : collections[1],
+		}, function(data) {
+			console.log(data);
+			$("#resultDiv").html("<h4>Mongo Poems</h4>");
+			if(data.length) {
+				$("#resultDiv").append("<li> Count: " + data.length + "</li>");
+				// shallow copy
+				poems = data.slice(0);
+				transformPoemsJsonToMd(poems);
+//				console.log(JSON.stringify(poems[10]));
+				var targetDir = $("#copyFrom").val();
+				$.post('/writeFiles', {
+					jsonObjects : poems,
+					rootDir: targetDir,
+					stringify: false
+				}, function(data) {
+					$("#resultDiv").html("<h4>Markdown Poems created in " + targetDir + "</h4>");
+					var list = $("<ul></ul>").attr({"id":"fileNames"});
+					$("#resultDiv").append(list);
+					for(var i=0; i < data.fileNames.length ; i++) {
+						$("#fileNames").append("<li>" + data.fileNames[i] + "</li>");				
+					}
+				});
+			}
+		});
+	};
+	
+	var transformPoemsJsonToMd = function(poems) {
+		var subDirBase = "Poems";
+		
+		for(var i=0, poem, markdown ; i < poems.length ; i++) {
+			var folderNum = (Math.floor(i/10) + 1).toString();
+			poem = poems[i];
+			markdown = "";
+			markdown += "#"+poem.title + "\n";
+			markdown += "##"+poem.author + "\n";
+			if(poem.keywords.length > 0) {
+				markdown += "###Keywords: ";
+				for(var j=0 ; j < poem.keywords.length ; j++) {
+					markdown += poem.keywords[j] + ",";
+				}
+				markdown += "\n";
+			}
+			markdown += "> " + poem.content + "\n";
+			poem.contents = markdown;
+//			console.log("poem.contents: " + poem.contents);
+			poem.fileName = poem.author.replace(/ /g,'') + poem.title.replace(/ /g,'') + ".md";
+			poem.subDir = subDirBase + folderNum;
+			poems[i] = poem;
+		}
+	};
+	
+	var writeDbMds = function() {
+		// TBD
+	};
+	
     // Markdown to HTML tranform function 
     var buildAll = function() {
     	var input = {
